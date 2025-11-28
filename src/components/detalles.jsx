@@ -28,6 +28,8 @@ const DetallesPelicula = () => {
     return (
         <div>
             <Link to={'/listado'}>Volver</Link>
+            <h1 className=" font-bold bg-black text-white inline-block rounded-2xl w-auto py-2 px-4">{movie.name}</h1>
+
         </div>
     );
 };
