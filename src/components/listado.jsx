@@ -21,7 +21,7 @@ const Listado = () => {
     return (
         <>
             <h1 className="flex justify-center text-5xl mt-2 mb-4">Listado de Peliculas</h1>
-            <div className="w-3/4 bg-amber-100 mx-auto p-4">
+            <div className="w-1/2 bg-gray-200 mx-auto p-4">
                 <ul>
                     {listado.map((movie, i) => (
                         <li key={i} className="flex flex-col justify-center items-center border rounded-lg p-4 m-4 bg-white shadow">
