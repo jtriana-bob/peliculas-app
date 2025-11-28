@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 const DetallesPelicula = () => {
-    const { tt } = useParams();
-    const [movie, setMovie] = useState({});
+    const { id } = useParams();
+    const [movie, setMovie] = useState(null);
+    const [cargando, setCargando] = useState(true);
 
-    useEffect(() => {
-        const fetchDetalles = async () => {
+
+        const traerDetalles = async () => {
             try {
-                const res = await fetch(`https://imdb.iamidiotareyoutoo.com/search?tt=${tt}`);
+                const res = await fetch(`https://imdb.iamidiotareyoutoo.com/search?tt=${id}`);
                 const data = await res.json();
-                console.log("Respuesta API:", data);
-                let info = data;
-                setMovie(info.short);
+                setMovie(data.short);
             } catch (e) {
                 console.error("Error al cargar película:", e);
+                setError("Error cargando la información.");
             }
         };
-        fetchDetalles();
-    }, [tt]);
 
-    if (!movie) return <h2>Cargando...</h2>;
+    useEffect(() => {
+        traerDetalles();
+        setCargando(false);
+    }, [id]);
 
     return (
         <div>
-
+            <Link to={'/listado'}>Volver</Link>
         </div>
     );
 };
