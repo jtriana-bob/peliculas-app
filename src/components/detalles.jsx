@@ -17,7 +17,9 @@ export default function PeliculaDetalle() {
     const fetchPelicula = async () => {
         const response = await fetch(`https://imdb.iamidiotareyoutoo.com/search?tt=${id}`);
         const data = await response.json();
-        setPelicula(data)
+        if (data.ok){
+            setPelicula(data)
+        }
         setLoading(false)
     }
 
@@ -25,16 +27,17 @@ export default function PeliculaDetalle() {
         fetchPelicula()
     }, [id]);
 
-    if (!pelicula) return <p>Pelicula No encontrada</p>
-
-    if (loading) return <div>
+    if (loading && !pelicula) return <div>
         Cargando...
     </div>;
+
+    if (!pelicula && !loading == false) return <p>Pelicula No encontrada</p>
+
 
     return (
         <div className="mt-10">
             <div className="flex justify-center items-center mt-6">
-                <div className="rounded-2xl bg-gray-200 p-2 hover:scale-105 transition-all w-[500px] relative">
+                <div className="rounded-2xl bg-gray-200 p-2 transition-all w-[500px] relative">
                     <h2 className="text-amber-950 text-3xl">{pelicula.short.name}</h2>
                     <div className="absolute top-1 right-5">
                         {
