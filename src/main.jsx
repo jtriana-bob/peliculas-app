@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Listado from "./components/listado.jsx";
 import DetallesPelicula from "./components/detalles.jsx";
 import { Navigate } from "react-router-dom";
+import {PeliculasFavoritasContext} from "./providers/PeliculasFavoritasContext.js";
+import PeliculasFavoritasProvider from "./providers/PeliculasFavoritasProvider.jsx";
 
 const router = createBrowserRouter([
     {
@@ -17,5 +19,8 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router} />
+    <PeliculasFavoritasProvider>
+        <RouterProvider router={router}/>
+    </PeliculasFavoritasProvider>
+
 );
